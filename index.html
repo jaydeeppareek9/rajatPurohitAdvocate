@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rajat Purohit – Advocate | Rajasthan High Court</title>
+  <meta name="description" content="Rajat Purohit – Advocate at Rajasthan High Court, Jaipur. Expert legal counsel in Rajasthan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===================== RESET & BASE ===================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold:       #C9A84C;
+      --gold-light: #E2C47A;
+      --gold-dim:   #8B6914;
+      --gold-glow:  rgba(201,168,76,0.15);
+      --black:      #080808;
+      --surface:    #111111;
+      --card:       #161616;
+      --border:     rgba(201,168,76,0.2);
+      --text:       #F0EAD6;
+      --muted:      #7A7060;
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'Raleway', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ===================== CUSTOM CURSOR ===================== */
+    #cursor-outer {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 36px; height: 36px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: transform 0.15s ease, width 0.2s, height 0.2s, border-color 0.2s;
+      mix-blend-mode: difference;
+    }
+    #cursor-inner {
+      position: fixed; top: 0; left: 0; z-index: 10000;
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: transform 0.05s ease;
+    }
+    body:has(a:hover) #cursor-outer,
+    body:has(button:hover) #cursor-outer {
+      width: 56px; height: 56px;
+      border-color: var(--gold-light);
+    }
+
+    /* ===================== CANVAS BG ===================== */
+    #particles-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ===================== SCROLLBAR ===================== */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+    /* ===================== LAYOUT ===================== */
+    .page { position: relative; z-index: 1; }
+
+    /* ===================== NAV ===================== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 60px;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.3s, padding 0.3s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(8,8,8,0.85);
+      padding: 16px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex; gap: 40px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+    }
+
+    /* Radial gold glow behind hero */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Animated scales icon */
+    .hero-emblem {
+      margin-bottom: 48px;
+      position: relative;
+    }
+    .emblem-ring {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      animation: ring-pulse 4s ease-in-out infinite;
+    }
+    .emblem-ring::before {
+      content: '';
+      position: absolute; inset: -8px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      border-top-color: var(--gold);
+      border-right-color: var(--gold-dim);
+      animation: spin 6s linear infinite;
+    }
+    .emblem-ring::after {
+      content: '';
+      position: absolute; inset: -16px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      border-bottom-color: rgba(201,168,76,0.3);
+      animation: spin 10s linear infinite reverse;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes ring-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+      50%      { box-shadow: 0 0 40px 4px rgba(201,168,76,0.08); }
+    }
+
+    .scales-svg {
+      width: 80px; height: 80px;
+    }
+    .scales-beam {
+      transform-origin: center;
+      animation: balance 5s ease-in-out infinite;
+    }
+    .scales-left-pan  { animation: pan-left  5s ease-in-out infinite; }
+    .scales-right-pan { animation: pan-right 5s ease-in-out infinite; }
+    @keyframes balance {
+      0%,100% { transform: rotate(0deg); }
+      25%  { transform: rotate(-4deg); }
+      75%  { transform: rotate(4deg); }
+    }
+    @keyframes pan-left {
+      0%,100% { transform: translateY(0); }
+      25%  { transform: translateY(4px); }
+      75%  { transform: translateY(-4px); }
+    }
+    @keyframes pan-right {
+      0%,100% { transform: translateY(0); }
+      25%  { transform: translateY(-4px); }
+      75%  { transform: translateY(4px); }
+    }
+
+    /* Hero text */
+    .hero-pre {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(64px, 9vw, 120px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s forwards;
+    }
+    .hero-name em {
+      font-style: normal;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .hero-title {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 24px;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.7s forwards;
+    }
+    .hero-court {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-style: italic;
+      color: rgba(201,168,76,0.7);
+      opacity: 0;
+      animation: fadeUp 0.9s 0.9s forwards;
+    }
+
+    /* Gold ornament divider */
+    .ornament {
+      display: flex; align-items: center; gap: 16px;
+      margin: 30px auto;
+      opacity: 0;
+      animation: fadeUp 0.9s 1.1s forwards;
+    }
+    .ornament .line {
+      width: 80px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim));
+    }
+    .ornament .line.r {
+      background: linear-gradient(to left, transparent, var(--gold-dim));
+    }
+    .ornament .diamond {
+      width: 8px; height: 8px;
+      border: 1px solid var(--gold);
+      transform: rotate(45deg);
+    }
+
+    /* Hero CTA */
+    .hero-cta {
+      display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.9s 1.3s forwards;
+      margin-top: 10px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: #000;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--gold-light);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+    }
+    .btn-secondary:hover {
+      background: var(--gold-glow);
+      border-color: var(--gold);
+    }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      opacity: 0;
+      animation: fadeIn 1s 2s forwards;
+    }
+    .scroll-hint span {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .scroll-mouse {
+      width: 22px; height: 34px;
+      border: 1px solid var(--gold-dim);
+      border-radius: 12px;
+      display: flex; justify-content: center;
+      padding-top: 6px;
+    }
+    .scroll-dot {
+      width: 3px; height: 6px;
+      background: var(--gold);
+      border-radius: 2px;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+    @keyframes scrollBounce {
+      0%,100% { transform: translateY(0); opacity: 1; }
+      50%      { transform: translateY(8px); opacity: 0.3; }
+    }
+
+    /* ===================== SECTIONS COMMON ===================== */
+    section { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .section-heading em { font-style: italic; color: var(--gold); }
+
+    /* reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ===================== ABOUT SECTION ===================== */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .photo-placeholder::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+    }
+    .photo-placeholder svg {
+      width: 80px; height: 80px;
+      opacity: 0.15;
+      fill: var(--gold);
+    }
+    .photo-placeholder .add-photo-text {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    /* Corner brackets on photo */
+    .photo-placeholder::after {
+      content: '';
+      position: absolute;
+      top: 12px; left: 12px;
+      right: 12px; bottom: 12px;
+      border: 1px solid rgba(201,168,76,0.1);
+      pointer-events: none;
+    }
+
+    .corner-tl, .corner-br {
+      position: absolute;
+      width: 30px; height: 30px;
+      z-index: 2;
+    }
+    .corner-tl {
+      top: -1px; left: -1px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+    }
+    .corner-br {
+      bottom: -1px; right: -1px;
+      border-bottom: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+    }
+
+    .about-text {}
+    .about-desc {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(240,234,214,0.75);
+      margin-bottom: 36px;
+    }
+
+    /* Stat boxes */
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 40px;
+    }
+    .stat-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 24px;
+      position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .stat-box:hover {
+      background: rgba(201,168,76,0.04);
+      border-color: var(--gold-dim);
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 44px;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ===================== CONTACT SECTION ===================== */
+    #contact-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    #contact-wrap::before {
+      content: '';
+      position: absolute; top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    #contact {
+      text-align: center;
+      padding: 100px 60px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+      margin-top: 60px;
+      text-align: left;
+    }
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s;
+      cursor: none;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--gold-dim), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .contact-card:hover { border-color: var(--gold-dim); transform: translateY(-4px); }
+    .contact-card:hover::before { transform: scaleX(1); }
+
+    .contact-icon {
+      width: 50px; height: 50px;
+      border: 1px solid var(--gold-dim);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      background: rgba(201,168,76,0.05);
+      position: relative;
+      transition: background 0.3s;
+    }
+    .contact-card:hover .contact-icon { background: rgba(201,168,76,0.12); }
+    .contact-icon svg { width: 22px; height: 22px; fill: var(--gold); }
+    .contact-info {}
+    .contact-type {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 6px;
+    }
+    .contact-value {
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .contact-link {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--gold-light); }
+
+    /* Map card full width */
+    .map-card {
+      grid-column: 1 / -1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      transition: border-color 0.3s;
+    }
+    .map-card:hover { border-color: var(--gold-dim); }
+
+    /* ===================== PRACTICE AREAS ===================== */
+    #practice {
+      padding: 100px 60px;
+    }
+    #practice .inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2px;
+      margin-top: 50px;
+    }
+    .practice-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .practice-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .practice-item:hover { transform: translateY(-6px); border-color: var(--gold-dim); }
+    .practice-item:hover::after { opacity: 1; }
+    .practice-icon { font-size: 32px; margin-bottom: 16px; }
+    .practice-name {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .practice-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      padding: 60px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute; top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 200px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .footer-logo em { color: var(--gold); font-style: normal; font-weight: 600; }
+    .footer-tagline {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--muted);
+      margin: 16px 0;
+    }
+    .footer-bottom {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: rgba(122,112,96,0.5);
+      margin-top: 40px;
+    }
+
+    /* ===================== HORIZONTAL RULES ===================== */
+    .hr-gold {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim) 30%, var(--gold) 50%, var(--gold-dim) 70%, transparent);
+      opacity: 0.4;
+      margin: 0 auto;
+    }
+
+    /* ===================== KEYFRAMES ===================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ===================== MOBILE ===================== */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 70px 24px; }
+      #about { grid-template-columns: 1fr; gap: 40px; }
+      .about-photo-wrap { max-width: 320px; margin: 0 auto; }
+      #contact { padding: 70px 24px; }
+      footer { padding: 40px 24px; }
+      #practice { padding: 70px 24px; }
+      #hero { padding: 100px 24px 80px; }
+      body { cursor: auto; }
+      #cursor-outer, #cursor-inner { display: none; }
+    }
+
+    /* ===================== GOLD LINE ANIMATED DIVIDER ===================== */
+    .anim-line {
+      width: 0;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold-dim), var(--gold));
+      margin: 0 auto 60px;
+      transition: width 1.2s ease;
+    }
+    .anim-line.visible { width: 120px; }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div id="cursor-outer"></div>
+  <div id="cursor-inner"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">RP</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#practice-wrap">Practice</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+
+    <!-- ===== HERO ===== -->
+    <section id="hero">
+      <div class="hero-emblem">
+        <div class="emblem-ring">
+          <svg class="scales-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Pole -->
+            <rect class="scales-pole" x="48.5" y="12" width="3" height="68" rx="1.5" fill="#C9A84C"/>
+            <!-- Top knob -->
+            <circle cx="50" cy="12" r="5.5" fill="#C9A84C"/>
+            <!-- Beam -->
+            <g class="scales-beam">
+              <rect x="18" y="36" width="64" height="3" rx="1.5" fill="#C9A84C"/>
+            </g>
+            <!-- Left pan group -->
+            <g class="scales-left-pan">
+              <line x1="26" y1="39" x2="18" y2="58" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="26" y1="39" x2="34" y2="58" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M13 58 Q26 72 39 58" stroke="#C9A84C" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            </g>
+            <!-- Right pan group -->
+            <g class="scales-right-pan">
+              <line x1="74" y1="39" x2="66" y2="58" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="74" y1="39" x2="82" y2="58" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M61 58 Q74 72 87 58" stroke="#C9A84C" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            </g>
+            <!-- Base -->
+            <rect x="40" y="80" width="20" height="3" rx="1.5" fill="#C9A84C"/>
+          </svg>
+        </div>
+      </div>
+
+      <p class="hero-pre">Rajasthan High Court — Jaipur</p>
+      <h1 class="hero-name">Rajat <em>Purohit</em></h1>
+
+      <div class="ornament">
+        <div class="line"></div>
+        <div class="diamond"></div>
+        <div class="line r"></div>
+      </div>
+
+      <p class="hero-title">Advocate &nbsp;|&nbsp; Legal Counsel</p>
+      <p class="hero-court">Rajasthan High Court</p>
+
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary"><span>Get In Touch</span></a>
+        <a href="tel:+918947074077" class="btn btn-secondary">+91 8947074077</a>
+      </div>
+
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <div style="max-width:1200px; margin:0 auto; padding: 0 60px;">
+      <div class="hr-gold"></div>
+    </div>
+
+    <section id="about">
+      <!-- Photo -->
+      <div class="about-photo-wrap reveal">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+          </svg>
+          <p class="add-photo-text">Your professional photo<br>goes here</p>
+        </div>
+        <div class="corner-tl"></div>
+        <div class="corner-br"></div>
+      </div>
+
+      <!-- Text -->
+      <div class="about-text">
+        <p class="section-label reveal">About</p>
+        <h2 class="section-heading reveal reveal-delay-1">
+          Committed to<br><em>Justice &amp; Excellence</em>
+        </h2>
+        <p class="about-desc reveal reveal-delay-2">
+          Advocate Rajat Purohit is a dedicated legal professional practising at the
+          Rajasthan High Court, Jaipur. With a deep commitment to upholding the
+          principles of justice, he brings rigorous legal analysis and steadfast
+          advocacy to every matter.
+        </p>
+
+        <div class="stats reveal reveal-delay-3">
+          <div class="stat-box">
+            <div class="stat-num" data-target="5">0</div>
+            <div class="stat-label">Years of Practice</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" data-target="200">0</div>
+            <div class="stat-label">Cases Handled</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" data-target="100">0</div>
+            <div class="stat-label">Clients Served</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" data-target="1">0</div>
+            <div class="stat-label">High Court</div>
+          </div>
+        </div>
+
+        <a href="tel:+918947074077" class="btn btn-primary reveal reveal-delay-4">
+          <span>Call for Consultation</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== PRACTICE AREAS ===== -->
+    <div id="practice-wrap" style="background: var(--surface); border-top:1px solid var(--border);">
+      <div id="practice" style="max-width:1200px; margin:0 auto;">
+        <div class="inner">
+          <p class="section-label reveal">Expertise</p>
+          <h2 class="section-heading reveal reveal-delay-1">Areas of <em>Practice</em></h2>
+          <div class="anim-line reveal reveal-delay-2"></div>
+          <div class="practice-grid">
+            <div class="practice-item reveal reveal-delay-1">
+              <div class="practice-icon">⚖️</div>
+              <div class="practice-name">Civil Litigation</div>
+              <div class="practice-desc">Property disputes, civil suits &amp; injunctions</div>
+            </div>
+            <div class="practice-item reveal reveal-delay-2">
+              <div class="practice-icon">🏛️</div>
+              <div class="practice-name">High Court Matters</div>
+              <div class="practice-desc">Writs, appeals &amp; revisions before Rajasthan HC</div>
+            </div>
+            <div class="practice-item reveal reveal-delay-3">
+              <div class="practice-icon">📋</div>
+              <div class="practice-name">Criminal Law</div>
+              <div class="practice-desc">Bail, trial representation &amp; criminal appeals</div>
+            </div>
+            <div class="practice-item reveal reveal-delay-4">
+              <div class="practice-icon">🏠</div>
+              <div class="practice-name">Property Law</div>
+              <div class="practice-desc">Title disputes, tenancy &amp; land acquisition</div>
+            </div>
+            <div class="practice-item reveal reveal-delay-5">
+              <div class="practice-icon">👨‍👩‍👧</div>
+              <div class="practice-name">Family Law</div>
+              <div class="practice-desc">Matrimonial cases, custody &amp; succession</div>
+            </div>
+            <div class="practice-item reveal reveal-delay-1">
+              <div class="practice-icon">📜</div>
+              <div class="practice-name">Constitutional Law</div>
+              <div class="practice-desc">Fundamental rights &amp; constitutional petitions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CONTACT ===== -->
+    <div id="contact-wrap">
+      <div id="contact" style="max-width:1200px; margin:0 auto; text-align:center;">
+        <p class="section-label reveal">Reach Out</p>
+        <h2 class="section-heading reveal reveal-delay-1">Get In <em>Touch</em></h2>
+        <p class="reveal reveal-delay-2" style="font-family:var(--serif); font-size:19px; color:var(--muted); font-style:italic; max-width:500px; margin:0 auto;">
+          Ready to discuss your legal matter? Schedule a consultation today.
+        </p>
+
+        <div class="contact-grid reveal reveal-delay-3">
+
+          <!-- Phone -->
+          <div class="contact-card">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.28-.28.7-.36 1.06-.22C17.65 15.38 18.8 15.6 20 15.6c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.32.03.7-.22.97L6.6 10.8z"/></svg>
+            </div>
+            <div class="contact-info">
+              <div class="contact-type">Mobile</div>
+              <div class="contact-value">
+                <a href="tel:+918947074077" class="contact-link">+91 8947074077</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-card">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div class="contact-info">
+              <div class="contact-type">Email</div>
+              <div class="contact-value">
+                <a href="mailto:advrajatpurohit@gmail.com" class="contact-link">advrajatpurohit@gmail.com</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="contact-card">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div class="contact-info">
+              <div class="contact-type">Office</div>
+              <div class="contact-value">
+                29, Radha Krishna Vihar,<br>
+                Govindpura, Jaipur – 302044<br>
+                Rajasthan, India
+              </div>
+            </div>
+          </div>
+
+          <!-- Maps -->
+          <div class="contact-card map-card">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+            </div>
+            <div class="contact-info" style="flex:1;">
+              <div class="contact-type">Google Maps — Office Location</div>
+              <div class="contact-value">
+                <a href="https://maps.app.goo.gl/p6aVadLbPLSUToMUA" target="_blank" rel="noopener" class="contact-link" style="color:var(--gold-light);">
+                  maps.app.goo.gl/p6aVadLbPLSUToMUA &nbsp;→
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <div class="footer-logo">Rajat <em>Purohit</em></div>
+      <div class="ornament" style="justify-content:center;">
+        <div class="line"></div>
+        <div class="diamond"></div>
+        <div class="line r"></div>
+      </div>
+      <p class="footer-tagline">"Justice Through Dedication &amp; Integrity"</p>
+      <p class="footer-bottom">
+        Advocate &nbsp;·&nbsp; Rajasthan High Court, Jaipur &nbsp;·&nbsp; Bar Council of Rajasthan
+      </p>
+    </footer>
+
+  </div><!-- /page -->
+
+  <script>
+  /* ============================================================
+     PARTICLES
+  ============================================================ */
+  (function() {
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [], animId;
+    const NUM = 90;
+    const GOLD = 'rgba(201,168,76,';
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+
+    function Particle() {
+      this.reset = function() {
+        this.x  = Math.random() * W;
+        this.y  = Math.random() * H;
+        this.r  = Math.random() * 1.2 + 0.2;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.a  = Math.random() * 0.5 + 0.05;
+        this.maxA = this.a;
+        this.life = Math.random() * 200 + 100;
+        this.age = 0;
+      };
+      this.reset();
+    }
+
+    function init() {
+      particles = [];
+      for (let i = 0; i < NUM; i++) { const p = new Particle(); p.age = Math.floor(Math.random()*p.life); particles.push(p); }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.age++;
+        if (p.age > p.life) p.reset();
+        if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+        const t = p.age / p.life;
+        const alpha = t < 0.1 ? (t/0.1)*p.maxA : t > 0.9 ? ((1-t)/0.1)*p.maxA : p.maxA;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = GOLD + alpha + ')';
+        ctx.fill();
+      });
+
+      // Draw connecting lines between nearby particles
+      for (let i = 0; i < NUM; i++) {
+        for (let j = i+1; j < NUM; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 120) {
+            const alpha = (1 - dist/120) * 0.08;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = GOLD + alpha + ')';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    resize();
+    init();
+    draw();
+    window.addEventListener('resize', () => { resize(); init(); });
+  })();
+
+  /* ============================================================
+     CURSOR
+  ============================================================ */
+  const cursorOuter = document.getElementById('cursor-outer');
+  const cursorInner = document.getElementById('cursor-inner');
+  let mx=0, my=0, ox=0, oy=0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursorInner.style.left = mx + 'px';
+    cursorInner.style.top  = my + 'px';
+  });
+
+  (function moveCursor() {
+    ox += (mx - ox) * 0.12;
+    oy += (my - oy) * 0.12;
+    cursorOuter.style.left = ox + 'px';
+    cursorOuter.style.top  = oy + 'px';
+    requestAnimationFrame(moveCursor);
+  })();
+
+  /* ============================================================
+     NAVBAR SCROLL
+  ============================================================ */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  /* ============================================================
+     SCROLL REVEAL (IntersectionObserver)
+  ============================================================ */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Also trigger animated lines
+        if (e.target.classList.contains('anim-line')) {
+          e.target.style.width = '120px';
+        }
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ============================================================
+     COUNTER ANIMATION
+  ============================================================ */
+  const counters = document.querySelectorAll('.stat-num[data-target]');
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = +el.getAttribute('data-target');
+        const suffix = target >= 100 ? '+' : (target === 1 ? '' : '+');
+        const duration = 1500;
+        const step = target / (duration / 16);
+        let current = 0;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            el.textContent = target + suffix;
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(current) + suffix;
+          }
+        }, 16);
+        counterObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObs.observe(c));
+
+  /* ============================================================
+     MOUSE PARALLAX on HERO
+  ============================================================ */
+  const hero = document.getElementById('hero');
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+    const yPct = (e.clientY - rect.top)  / rect.height - 0.5;
+    const ring = hero.querySelector('.emblem-ring');
+    if (ring) {
+      ring.style.transform = `translate(${xPct * 10}px, ${yPct * 10}px)`;
+    }
+  });
+  hero.addEventListener('mouseleave', () => {
+    const ring = hero.querySelector('.emblem-ring');
+    if (ring) ring.style.transform = '';
+  });
+  </script>
+
+</body>
+</html>

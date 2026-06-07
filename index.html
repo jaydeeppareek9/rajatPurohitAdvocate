@@ -59,7 +59,8 @@
       transition: transform 0.05s ease;
     }
     body:has(a:hover) #cursor-outer,
-    body:has(button:hover) #cursor-outer {
+    body:has(button:hover) #cursor-outer,
+    body:has(.menu-toggle:hover) #cursor-outer {
       width: 56px; height: 56px;
       border-color: var(--gold-light);
     }
@@ -73,9 +74,9 @@
     }
 
     /* ===================== SCROLLBAR ===================== */
-    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 4px; }
 
     /* ===================== LAYOUT ===================== */
     .page { position: relative; z-index: 1; }
@@ -83,12 +84,12 @@
     /* ===================== NAV ===================== */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
       padding: 24px 60px;
       background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
       backdrop-filter: blur(0px);
-      transition: backdrop-filter 0.3s, padding 0.3s;
+      transition: backdrop-filter 0.3s, padding 0.3s, background 0.3s;
     }
     nav.scrolled {
       backdrop-filter: blur(20px);
@@ -98,17 +99,18 @@
     }
     .nav-logo {
       font-family: var(--serif);
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 600;
       color: var(--gold);
       letter-spacing: 0.05em;
       text-decoration: none;
+      z-index: 1001;
     }
     .nav-links {
       display: flex; gap: 40px; list-style: none;
     }
     .nav-links a {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.25em;
       text-transform: uppercase;
@@ -120,7 +122,7 @@
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -4px; left: 0; right: 0;
+      bottom: -6px; left: 0; right: 0;
       height: 1px;
       background: var(--gold);
       transform: scaleX(0);
@@ -130,17 +132,35 @@
     .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after { transform: scaleX(1); }
 
+    /* Hamburger Menu Icon */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .menu-toggle span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: var(--gold);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
     /* ===================== HERO ===================== */
     #hero {
       min-height: 100vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
-      padding: 120px 40px 80px;
+      padding: 140px 20px 80px;
       position: relative;
     }
 
-    /* Radial gold glow behind hero */
     #hero::before {
       content: '';
       position: absolute;
@@ -151,13 +171,12 @@
       pointer-events: none;
     }
 
-    /* Animated scales icon */
     .hero-emblem {
       margin-bottom: 48px;
       position: relative;
     }
     .emblem-ring {
-      width: 160px; height: 160px;
+      width: 140px; height: 140px;
       border-radius: 50%;
       border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
@@ -187,9 +206,7 @@
       50%      { box-shadow: 0 0 40px 4px rgba(201,168,76,0.08); }
     }
 
-    .scales-svg {
-      width: 80px; height: 80px;
-    }
+    .scales-svg { width: 70px; height: 70px; }
     .scales-beam {
       transform-origin: center;
       animation: balance 5s ease-in-out infinite;
@@ -212,25 +229,24 @@
       75%  { transform: translateY(4px); }
     }
 
-    /* Hero text */
     .hero-pre {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.45em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       opacity: 0;
       animation: fadeUp 0.8s 0.3s forwards;
     }
     .hero-name {
       font-family: var(--serif);
-      font-size: clamp(64px, 9vw, 120px);
+      font-size: clamp(52px, 8vw, 120px);
       font-weight: 300;
-      line-height: 1;
+      line-height: 1.1;
       letter-spacing: 0.02em;
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       opacity: 0;
       animation: fadeUp 0.9s 0.5s forwards;
     }
@@ -240,26 +256,25 @@
       font-weight: 600;
     }
     .hero-title {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--muted);
       margin-top: 24px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       opacity: 0;
       animation: fadeUp 0.9s 0.7s forwards;
     }
     .hero-court {
       font-family: var(--serif);
-      font-size: 26px;
+      font-size: clamp(22px, 4vw, 28px);
       font-style: italic;
       color: rgba(201,168,76,0.7);
       opacity: 0;
       animation: fadeUp 0.9s 0.9s forwards;
     }
 
-    /* Gold ornament divider */
     .ornament {
       display: flex; align-items: center; gap: 16px;
       margin: 30px auto;
@@ -279,32 +294,28 @@
       transform: rotate(45deg);
     }
 
-    /* Hero CTA */
     .hero-cta {
       display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
       opacity: 0;
       animation: fadeUp 0.9s 1.3s forwards;
-      margin-top: 10px;
+      margin-top: 20px;
     }
     .btn {
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 32px;
+      padding: 16px 36px;
       font-family: var(--sans);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       text-decoration: none;
       border: none;
-      cursor: none;
+      cursor: pointer; /* Change for mobile usage */
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
-    .btn-primary {
-      background: var(--gold);
-      color: #000;
-    }
+    .btn-primary { background: var(--gold); color: #000; }
     .btn-primary::before {
       content: '';
       position: absolute; inset: 0;
@@ -324,7 +335,6 @@
       border-color: var(--gold);
     }
 
-    /* Scroll indicator */
     .scroll-hint {
       position: absolute;
       bottom: 40px; left: 50%;
@@ -334,20 +344,20 @@
       animation: fadeIn 1s 2s forwards;
     }
     .scroll-hint span {
-      font-size: 9px;
+      font-size: 10px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--muted);
     }
     .scroll-mouse {
-      width: 22px; height: 34px;
+      width: 24px; height: 38px;
       border: 1px solid var(--gold-dim);
       border-radius: 12px;
       display: flex; justify-content: center;
-      padding-top: 6px;
+      padding-top: 8px;
     }
     .scroll-dot {
-      width: 3px; height: 6px;
+      width: 4px; height: 8px;
       background: var(--gold);
       border-radius: 2px;
       animation: scrollBounce 2s ease-in-out infinite;
@@ -358,36 +368,32 @@
     }
 
     /* ===================== SECTIONS COMMON ===================== */
-    section { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+    section { padding: 120px 60px; max-width: 1200px; margin: 0 auto; }
 
     .section-label {
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .section-heading {
       font-family: var(--serif);
       font-size: clamp(36px, 5vw, 60px);
       font-weight: 300;
-      line-height: 1.1;
+      line-height: 1.2;
       color: var(--text);
       margin-bottom: 24px;
     }
     .section-heading em { font-style: italic; color: var(--gold); }
 
-    /* reveal on scroll */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
@@ -401,9 +407,7 @@
       gap: 80px;
       align-items: center;
     }
-    .about-photo-wrap {
-      position: relative;
-    }
+    .about-photo-wrap { position: relative; width: 100%; max-width: 450px; margin: 0 auto; }
     .photo-placeholder {
       width: 100%;
       aspect-ratio: 3/4;
@@ -426,15 +430,14 @@
       fill: var(--gold);
     }
     .photo-placeholder .add-photo-text {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold-dim);
       text-align: center;
       padding: 0 20px;
+      line-height: 1.6;
     }
-
-    /* Corner brackets on photo */
     .photo-placeholder::after {
       content: '';
       position: absolute;
@@ -443,45 +446,35 @@
       border: 1px solid rgba(201,168,76,0.1);
       pointer-events: none;
     }
-
     .corner-tl, .corner-br {
       position: absolute;
       width: 30px; height: 30px;
       z-index: 2;
     }
-    .corner-tl {
-      top: -1px; left: -1px;
-      border-top: 2px solid var(--gold);
-      border-left: 2px solid var(--gold);
-    }
-    .corner-br {
-      bottom: -1px; right: -1px;
-      border-bottom: 2px solid var(--gold);
-      border-right: 2px solid var(--gold);
-    }
+    .corner-tl { top: -1px; left: -1px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+    .corner-br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
 
-    .about-text {}
     .about-desc {
       font-family: var(--serif);
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 300;
       line-height: 1.8;
-      color: rgba(240,234,214,0.75);
-      margin-bottom: 36px;
+      color: rgba(240,234,214,0.8);
+      margin-bottom: 40px;
     }
 
-    /* Stat boxes */
     .stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-bottom: 40px;
+      gap: 4px;
+      margin-bottom: 48px;
     }
     .stat-box {
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 24px;
+      padding: 32px 24px;
       position: relative;
+      text-align: center;
       transition: background 0.3s, border-color 0.3s;
     }
     .stat-box:hover {
@@ -490,18 +483,63 @@
     }
     .stat-num {
       font-family: var(--serif);
-      font-size: 44px;
+      font-size: 48px;
       font-weight: 300;
       color: var(--gold);
       line-height: 1;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
     .stat-label {
       font-size: 11px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--muted);
+    }
+
+    /* ===================== PRACTICE AREAS ===================== */
+    #practice-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    #practice { padding: 120px 60px; }
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 4px;
+      margin-top: 60px;
+    }
+    .practice-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 48px 32px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .practice-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .practice-item:hover { transform: translateY(-8px); border-color: var(--gold-dim); }
+    .practice-item:hover::after { opacity: 1; }
+    .practice-icon { font-size: 40px; margin-bottom: 20px; }
+    .practice-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .practice-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
     /* ===================== CONTACT SECTION ===================== */
@@ -518,43 +556,50 @@
       width: 300px; height: 1px;
       background: linear-gradient(to right, transparent, var(--gold), transparent);
     }
-    #contact {
-      text-align: center;
-      padding: 100px 60px;
+    #contact { text-align: center; padding: 120px 60px; }
+    
+    .contact-subtitle {
+      font-family: var(--serif); 
+      font-size: 22px; 
+      color: var(--muted); 
+      font-style: italic; 
+      max-width: 600px; 
+      margin: 0 auto;
     }
+
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4px;
       margin-top: 60px;
       text-align: left;
     }
     .contact-card {
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 36px 32px;
+      padding: 40px 32px;
       display: flex;
       align-items: flex-start;
-      gap: 22px;
+      gap: 24px;
       position: relative;
       overflow: hidden;
       transition: transform 0.3s ease, border-color 0.3s;
-      cursor: none;
+      cursor: pointer;
     }
     .contact-card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0;
-      height: 2px;
+      height: 3px;
       background: linear-gradient(to right, var(--gold-dim), var(--gold));
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.4s ease;
     }
-    .contact-card:hover { border-color: var(--gold-dim); transform: translateY(-4px); }
+    .contact-card:hover { border-color: var(--gold-dim); transform: translateY(-6px); }
     .contact-card:hover::before { transform: scaleX(1); }
 
     .contact-icon {
-      width: 50px; height: 50px;
+      width: 56px; height: 56px;
       border: 1px solid var(--gold-dim);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
@@ -563,91 +608,45 @@
       transition: background 0.3s;
     }
     .contact-card:hover .contact-icon { background: rgba(201,168,76,0.12); }
-    .contact-icon svg { width: 22px; height: 22px; fill: var(--gold); }
-    .contact-info {}
+    .contact-icon svg { width: 24px; height: 24px; fill: var(--gold); }
     .contact-type {
-      font-size: 9px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--gold-dim);
-      margin-bottom: 6px;
+      margin-bottom: 10px;
     }
     .contact-value {
       font-family: var(--serif);
-      font-size: 17px;
+      font-size: 18px;
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.6;
     }
     .contact-link {
       text-decoration: none;
       color: inherit;
       transition: color 0.2s;
+      display: inline-block;
     }
     .contact-link:hover { color: var(--gold-light); }
 
-    /* Map card full width */
     .map-card {
       grid-column: 1 / -1;
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 36px 32px;
-      display: flex;
       align-items: center;
-      gap: 22px;
+    }
+    .map-card .contact-value a {
+      color: var(--gold);
+      border-bottom: 1px solid transparent;
       transition: border-color 0.3s;
     }
-    .map-card:hover { border-color: var(--gold-dim); }
-
-    /* ===================== PRACTICE AREAS ===================== */
-    #practice {
-      padding: 100px 60px;
-    }
-    #practice .inner {
-      max-width: 1200px; margin: 0 auto;
-    }
-    .practice-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2px;
-      margin-top: 50px;
-    }
-    .practice-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 32px 24px;
-      text-align: center;
-      transition: all 0.3s ease;
-      cursor: none;
-      position: relative;
-      overflow: hidden;
-    }
-    .practice-item::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .practice-item:hover { transform: translateY(-6px); border-color: var(--gold-dim); }
-    .practice-item:hover::after { opacity: 1; }
-    .practice-icon { font-size: 32px; margin-bottom: 16px; }
-    .practice-name {
-      font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .practice-desc {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.6;
+    .map-card .contact-value a:hover {
+      border-color: var(--gold);
     }
 
     /* ===================== FOOTER ===================== */
     footer {
-      padding: 60px;
+      padding: 80px 40px;
       text-align: center;
       border-top: 1px solid var(--border);
       position: relative;
@@ -661,24 +660,24 @@
     }
     .footer-logo {
       font-family: var(--serif);
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 300;
       color: var(--text);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
     .footer-logo em { color: var(--gold); font-style: normal; font-weight: 600; }
     .footer-tagline {
       font-family: var(--serif);
-      font-size: 16px;
+      font-size: 18px;
       font-style: italic;
       color: var(--muted);
-      margin: 16px 0;
+      margin: 20px 0;
     }
     .footer-bottom {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.1em;
-      color: rgba(122,112,96,0.5);
-      margin-top: 40px;
+      color: rgba(122,112,96,0.6);
+      margin-top: 48px;
     }
 
     /* ===================== HORIZONTAL RULES ===================== */
@@ -690,6 +689,15 @@
       margin: 0 auto;
     }
 
+    .anim-line {
+      width: 0;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold-dim), var(--gold));
+      margin: 0 auto 60px;
+      transition: width 1.2s ease;
+    }
+    .anim-line.visible { width: 140px; }
+
     /* ===================== KEYFRAMES ===================== */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -700,46 +708,72 @@
       to   { opacity: 1; }
     }
 
-    /* ===================== MOBILE ===================== */
+    /* ===================== MOBILE RESPONSIVENESS ===================== */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .map-card { grid-column: auto; }
+    }
+
     @media (max-width: 768px) {
-      nav { padding: 20px 24px; }
-      nav.scrolled { padding: 14px 24px; }
-      .nav-links { display: none; }
-      section { padding: 70px 24px; }
-      #about { grid-template-columns: 1fr; gap: 40px; }
-      .about-photo-wrap { max-width: 320px; margin: 0 auto; }
-      #contact { padding: 70px 24px; }
-      footer { padding: 40px 24px; }
-      #practice { padding: 70px 24px; }
-      #hero { padding: 100px 24px 80px; }
+      /* Mobile Menu Styles */
+      nav { padding: 20px 24px; background: rgba(17, 17, 17, 0.98); }
+      nav.scrolled { padding: 16px 24px; }
+      
+      .menu-toggle { display: flex; }
+      .menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+      .menu-toggle.active span:nth-child(2) { opacity: 0; }
+      .menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 260px;
+        height: 100vh;
+        background: rgba(17, 17, 17, 0.98);
+        border-left: 1px solid var(--border);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+      }
+      .nav-links.active { right: 0; }
+      .nav-links a { font-size: 16px; padding: 15px; display: block; }
+
+      /* General Mobile Spacing */
+      section { padding: 80px 24px; }
+      #hero { padding: 120px 24px 60px; }
+      #about { grid-template-columns: 1fr; gap: 50px; }
+      .about-photo-wrap { max-width: 320px; }
+      #contact { padding: 80px 24px; }
+      #practice { padding: 80px 24px; }
+      footer { padding: 60px 24px; }
+      
+      .stats { grid-template-columns: 1fr; gap: 8px; }
+      .contact-card { flex-direction: column; align-items: center; text-align: center; padding: 32px 20px; }
+      
+      /* Disable Custom Cursor on Mobile */
       body { cursor: auto; }
       #cursor-outer, #cursor-inner { display: none; }
     }
-
-    /* ===================== GOLD LINE ANIMATED DIVIDER ===================== */
-    .anim-line {
-      width: 0;
-      height: 1px;
-      background: linear-gradient(to right, var(--gold-dim), var(--gold));
-      margin: 0 auto 60px;
-      transition: width 1.2s ease;
-    }
-    .anim-line.visible { width: 120px; }
   </style>
 </head>
 <body>
 
-  <!-- Custom Cursor -->
   <div id="cursor-outer"></div>
   <div id="cursor-inner"></div>
 
-  <!-- Particle Canvas -->
   <canvas id="particles-canvas"></canvas>
 
-  <!-- NAV -->
   <nav id="navbar">
     <a href="#hero" class="nav-logo">RP</a>
-    <ul class="nav-links">
+    <div class="menu-toggle" id="mobile-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="nav-links" id="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#practice-wrap">Practice</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -748,32 +782,25 @@
 
   <div class="page">
 
-    <!-- ===== HERO ===== -->
     <section id="hero">
       <div class="hero-emblem">
         <div class="emblem-ring">
           <svg class="scales-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Pole -->
             <rect class="scales-pole" x="48.5" y="12" width="3" height="68" rx="1.5" fill="#C9A84C"/>
-            <!-- Top knob -->
             <circle cx="50" cy="12" r="5.5" fill="#C9A84C"/>
-            <!-- Beam -->
             <g class="scales-beam">
               <rect x="18" y="36" width="64" height="3" rx="1.5" fill="#C9A84C"/>
             </g>
-            <!-- Left pan group -->
             <g class="scales-left-pan">
               <line x1="26" y1="39" x2="18" y2="58" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/>
               <line x1="26" y1="39" x2="34" y2="58" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/>
               <path d="M13 58 Q26 72 39 58" stroke="#C9A84C" stroke-width="2.2" fill="none" stroke-linecap="round"/>
             </g>
-            <!-- Right pan group -->
             <g class="scales-right-pan">
               <line x1="74" y1="39" x2="66" y2="58" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/>
               <line x1="74" y1="39" x2="82" y2="58" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/>
               <path d="M61 58 Q74 72 87 58" stroke="#C9A84C" stroke-width="2.2" fill="none" stroke-linecap="round"/>
             </g>
-            <!-- Base -->
             <rect x="40" y="80" width="20" height="3" rx="1.5" fill="#C9A84C"/>
           </svg>
         </div>
@@ -788,7 +815,7 @@
         <div class="line r"></div>
       </div>
 
-      <p class="hero-title">Advocate &nbsp;|&nbsp; Legal Counsel</p>
+      <p class="hero-title">Advocate  |  Legal Counsel</p>
       <p class="hero-court">Rajasthan High Court</p>
 
       <div class="hero-cta">
@@ -802,13 +829,11 @@
       </div>
     </section>
 
-    <!-- ===== ABOUT ===== -->
     <div style="max-width:1200px; margin:0 auto; padding: 0 60px;">
       <div class="hr-gold"></div>
     </div>
 
     <section id="about">
-      <!-- Photo -->
       <div class="about-photo-wrap reveal">
         <div class="photo-placeholder">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -820,11 +845,10 @@
         <div class="corner-br"></div>
       </div>
 
-      <!-- Text -->
       <div class="about-text">
         <p class="section-label reveal">About</p>
         <h2 class="section-heading reveal reveal-delay-1">
-          Committed to<br><em>Justice &amp; Excellence</em>
+          Committed to<br><em>Justice & Excellence</em>
         </h2>
         <p class="about-desc reveal reveal-delay-2">
           Advocate Rajat Purohit is a dedicated legal professional practising at the
@@ -858,8 +882,7 @@
       </div>
     </section>
 
-    <!-- ===== PRACTICE AREAS ===== -->
-    <div id="practice-wrap" style="background: var(--surface); border-top:1px solid var(--border);">
+    <div id="practice-wrap">
       <div id="practice" style="max-width:1200px; margin:0 auto;">
         <div class="inner">
           <p class="section-label reveal">Expertise</p>
@@ -869,50 +892,48 @@
             <div class="practice-item reveal reveal-delay-1">
               <div class="practice-icon">⚖️</div>
               <div class="practice-name">Civil Litigation</div>
-              <div class="practice-desc">Property disputes, civil suits &amp; injunctions</div>
+              <div class="practice-desc">Property disputes, civil suits & injunctions</div>
             </div>
             <div class="practice-item reveal reveal-delay-2">
               <div class="practice-icon">🏛️</div>
               <div class="practice-name">High Court Matters</div>
-              <div class="practice-desc">Writs, appeals &amp; revisions before Rajasthan HC</div>
+              <div class="practice-desc">Writs, appeals & revisions before Rajasthan HC</div>
             </div>
             <div class="practice-item reveal reveal-delay-3">
               <div class="practice-icon">📋</div>
               <div class="practice-name">Criminal Law</div>
-              <div class="practice-desc">Bail, trial representation &amp; criminal appeals</div>
+              <div class="practice-desc">Bail, trial representation & criminal appeals</div>
             </div>
             <div class="practice-item reveal reveal-delay-4">
               <div class="practice-icon">🏠</div>
               <div class="practice-name">Property Law</div>
-              <div class="practice-desc">Title disputes, tenancy &amp; land acquisition</div>
+              <div class="practice-desc">Title disputes, tenancy & land acquisition</div>
             </div>
             <div class="practice-item reveal reveal-delay-5">
               <div class="practice-icon">👨‍👩‍👧</div>
               <div class="practice-name">Family Law</div>
-              <div class="practice-desc">Matrimonial cases, custody &amp; succession</div>
+              <div class="practice-desc">Matrimonial cases, custody & succession</div>
             </div>
             <div class="practice-item reveal reveal-delay-1">
               <div class="practice-icon">📜</div>
               <div class="practice-name">Constitutional Law</div>
-              <div class="practice-desc">Fundamental rights &amp; constitutional petitions</div>
+              <div class="practice-desc">Fundamental rights & constitutional petitions</div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ===== CONTACT ===== -->
     <div id="contact-wrap">
-      <div id="contact" style="max-width:1200px; margin:0 auto; text-align:center;">
+      <div id="contact">
         <p class="section-label reveal">Reach Out</p>
         <h2 class="section-heading reveal reveal-delay-1">Get In <em>Touch</em></h2>
-        <p class="reveal reveal-delay-2" style="font-family:var(--serif); font-size:19px; color:var(--muted); font-style:italic; max-width:500px; margin:0 auto;">
+        <p class="contact-subtitle reveal reveal-delay-2">
           Ready to discuss your legal matter? Schedule a consultation today.
         </p>
 
         <div class="contact-grid reveal reveal-delay-3">
 
-          <!-- Phone -->
           <div class="contact-card">
             <div class="contact-icon">
               <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.28-.28.7-.36 1.06-.22C17.65 15.38 18.8 15.6 20 15.6c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.32.03.7-.22.97L6.6 10.8z"/></svg>
@@ -925,7 +946,6 @@
             </div>
           </div>
 
-          <!-- Email -->
           <div class="contact-card">
             <div class="contact-icon">
               <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -938,31 +958,18 @@
             </div>
           </div>
 
-          <!-- Address -->
-          <div class="contact-card">
+          <div class="contact-card map-card">
             <div class="contact-icon">
               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
             </div>
-            <div class="contact-info">
-              <div class="contact-type">Office</div>
-              <div class="contact-value">
-                29, Radha Krishna Vihar,<br>
-                Govindpura, Jaipur – 302044<br>
-                Rajasthan, India
-              </div>
-            </div>
-          </div>
-
-          <!-- Maps -->
-          <div class="contact-card map-card">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
-            </div>
             <div class="contact-info" style="flex:1;">
-              <div class="contact-type">Google Maps — Office Location</div>
+              <div class="contact-type">Office Location</div>
               <div class="contact-value">
-                <a href="https://maps.app.goo.gl/p6aVadLbPLSUToMUA" target="_blank" rel="noopener" class="contact-link" style="color:var(--gold-light);">
-                  maps.app.goo.gl/p6aVadLbPLSUToMUA &nbsp;→
+                <a href="https://www.google.com/maps/search/?api=1&query=29,+Radha+Krishna+Vihar,+Govindpura,+Jaipur+-+302044,+Rajasthan,+India" target="_blank" rel="noopener" class="contact-link">
+                  29, Radha Krishna Vihar,<br>
+                  Govindpura, Jaipur – 302044<br>
+                  Rajasthan, India<br>
+                  <span style="font-size: 14px; font-weight: 600; color: var(--gold-light); display: inline-block; margin-top: 10px;">Open in Google Maps  →</span>
                 </a>
               </div>
             </div>
@@ -972,7 +979,6 @@
       </div>
     </div>
 
-    <!-- ===== FOOTER ===== -->
     <footer>
       <div class="footer-logo">Rajat <em>Purohit</em></div>
       <div class="ornament" style="justify-content:center;">
@@ -980,15 +986,32 @@
         <div class="diamond"></div>
         <div class="line r"></div>
       </div>
-      <p class="footer-tagline">"Justice Through Dedication &amp; Integrity"</p>
+      <p class="footer-tagline">"Justice Through Dedication & Integrity"</p>
       <p class="footer-bottom">
-        Advocate &nbsp;·&nbsp; Rajasthan High Court, Jaipur &nbsp;·&nbsp; Bar Council of Rajasthan
+        Advocate  ·  Rajasthan High Court, Jaipur  ·  Bar Council of Rajasthan
       </p>
     </footer>
 
-  </div><!-- /page -->
+  </div><script>
+  /* ============================================================
+     MOBILE MENU LOGIC
+  ============================================================ */
+  const mobileMenuBtn = document.getElementById('mobile-menu');
+  const navLinksList = document.getElementById('nav-links');
+  const navItems = document.querySelectorAll('.nav-links a');
 
-  <script>
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.classList.toggle('active');
+    navLinksList.classList.toggle('active');
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      mobileMenuBtn.classList.remove('active');
+      navLinksList.classList.remove('active');
+    });
+  });
+
   /* ============================================================
      PARTICLES
   ============================================================ */
@@ -996,7 +1019,7 @@
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
     let W, H, particles = [], animId;
-    const NUM = 90;
+    const NUM = window.innerWidth > 768 ? 90 : 40; // fewer particles on mobile for performance
     const GOLD = 'rgba(201,168,76,';
 
     function resize() {
@@ -1039,7 +1062,6 @@
         ctx.fill();
       });
 
-      // Draw connecting lines between nearby particles
       for (let i = 0; i < NUM; i++) {
         for (let j = i+1; j < NUM; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -1073,19 +1095,21 @@
   const cursorInner = document.getElementById('cursor-inner');
   let mx=0, my=0, ox=0, oy=0;
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursorInner.style.left = mx + 'px';
-    cursorInner.style.top  = my + 'px';
-  });
+  if (window.innerWidth > 768) {
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursorInner.style.left = mx + 'px';
+      cursorInner.style.top  = my + 'px';
+    });
 
-  (function moveCursor() {
-    ox += (mx - ox) * 0.12;
-    oy += (my - oy) * 0.12;
-    cursorOuter.style.left = ox + 'px';
-    cursorOuter.style.top  = oy + 'px';
-    requestAnimationFrame(moveCursor);
-  })();
+    (function moveCursor() {
+      ox += (mx - ox) * 0.12;
+      oy += (my - oy) * 0.12;
+      cursorOuter.style.left = ox + 'px';
+      cursorOuter.style.top  = oy + 'px';
+      requestAnimationFrame(moveCursor);
+    })();
+  }
 
   /* ============================================================
      NAVBAR SCROLL
@@ -1103,9 +1127,8 @@
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
-        // Also trigger animated lines
         if (e.target.classList.contains('anim-line')) {
-          e.target.style.width = '120px';
+          e.target.style.width = '140px';
         }
         revealObs.unobserve(e.target);
       }
@@ -1144,20 +1167,22 @@
   /* ============================================================
      MOUSE PARALLAX on HERO
   ============================================================ */
-  const hero = document.getElementById('hero');
-  hero.addEventListener('mousemove', (e) => {
-    const rect = hero.getBoundingClientRect();
-    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
-    const yPct = (e.clientY - rect.top)  / rect.height - 0.5;
-    const ring = hero.querySelector('.emblem-ring');
-    if (ring) {
-      ring.style.transform = `translate(${xPct * 10}px, ${yPct * 10}px)`;
-    }
-  });
-  hero.addEventListener('mouseleave', () => {
-    const ring = hero.querySelector('.emblem-ring');
-    if (ring) ring.style.transform = '';
-  });
+  if (window.innerWidth > 768) {
+    const hero = document.getElementById('hero');
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+      const yPct = (e.clientY - rect.top)  / rect.height - 0.5;
+      const ring = hero.querySelector('.emblem-ring');
+      if (ring) {
+        ring.style.transform = `translate(${xPct * 10}px, ${yPct * 10}px)`;
+      }
+    });
+    hero.addEventListener('mouseleave', () => {
+      const ring = hero.querySelector('.emblem-ring');
+      if (ring) ring.style.transform = '';
+    });
+  }
   </script>
 
 </body>
